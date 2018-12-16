@@ -50,7 +50,11 @@ public class CourseDao {
                     .map(s -> s.getName() + " " + s.getSurname())
                     .collect(Collectors.toList());
 
-                return new CourseSummary(name, attendees);
+                List<String> teachers = c.getStudents().stream()
+                        .map(s -> s.getName() + " " + s.getSurname())
+                        .collect(Collectors.toList());
+
+                return new CourseSummary(name, attendees, teachers);
             })
             .collect(Collectors.toList());
     }

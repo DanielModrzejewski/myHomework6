@@ -21,12 +21,15 @@ public class Course {
     @Column(name = "id")
     private Long id;
 
-    @Column(name = "course_name", length = 20)
+    @Column(name = "course_name")
     @NotNull
     private String name;
 
     @ManyToMany(mappedBy = "courses")
     private List<Student> students;
+
+    @ManyToMany(mappedBy = "courses")
+    private List<Teacher> teachers;
 
     public Course() {
     }
@@ -59,6 +62,14 @@ public class Course {
         this.students = students;
     }
 
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("Course{");
@@ -68,6 +79,11 @@ public class Course {
             .stream()
             .map(Student::getId)
             .collect(toList())
+        );
+        sb.append(", teachers=").append(teachers
+                .stream()
+                .map(Teacher::getName)
+                .collect(toList())
         );
         sb.append('}');
         return sb.toString();

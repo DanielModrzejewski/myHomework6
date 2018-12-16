@@ -8,9 +8,12 @@ public class CourseSummary {
 
     private List<String> attendees;
 
-    public CourseSummary(String name, List<String> attendees) {
+    private List<String> teachers;
+
+    public CourseSummary(String name, List<String> attendees, List<String> teachers) {
         this.name = name;
         this.attendees = attendees;
+        this.teachers = teachers;
     }
 
     public String getName() {
@@ -29,11 +32,20 @@ public class CourseSummary {
         this.attendees = attendees;
     }
 
+    public List<String> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<String> teachers) {
+        this.teachers = teachers;
+    }
+
     @Override
     public String toString() {
         final StringBuffer sb = new StringBuffer("CourseSummary{");
         sb.append("name='").append(name).append('\'');
         sb.append(", attendees=").append(attendees);
+        sb.append(", teachers=").append(teachers);
         sb.append('}');
         return sb.toString();
     }

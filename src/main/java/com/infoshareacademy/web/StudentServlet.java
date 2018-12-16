@@ -1,14 +1,10 @@
 package com.infoshareacademy.web;
 
-import com.infoshareacademy.dao.AddressDao;
-import com.infoshareacademy.dao.ComputerDao;
-import com.infoshareacademy.dao.CourseDao;
-import com.infoshareacademy.dao.StudentDao;
-import com.infoshareacademy.model.Address;
-import com.infoshareacademy.model.Computer;
-import com.infoshareacademy.model.Course;
-import com.infoshareacademy.model.Student;
+import com.infoshareacademy.dao.*;
+import com.infoshareacademy.model.*;
+
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Arrays;
@@ -42,6 +38,9 @@ public class StudentServlet extends HttpServlet {
     @Inject
     private CourseDao courseDao;
 
+    @Inject
+    private TeacherDao teacherDao;
+
     @Override
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
@@ -57,6 +56,14 @@ public class StudentServlet extends HttpServlet {
 
         Course course3 = new Course("JJDDL2");
         courseDao.save(course3);
+
+        // Teachers
+        Teacher teacher1 = new Teacher("35513765354", "Tomasz", "Malomowny", Arrays.asList(course1,course2));
+        teacherDao.save(teacher1);
+        Teacher teacher2 = new Teacher("15739753654", "Ania", "Dobra", Arrays.asList(course3,course2));
+        teacherDao.save(teacher2);
+        Teacher teacher3 = new Teacher("56456527145", "Michal", "Psikuta", Arrays.asList(course1,course3));
+        teacherDao.save(teacher3);
 
         // Addresses
         Address a1 = new Address("Grunwaldzka 472B", "Gdansk");
